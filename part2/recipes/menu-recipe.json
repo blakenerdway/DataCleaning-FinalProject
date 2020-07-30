@@ -8368,5 +8368,21 @@
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "name",
+    "description": "Remove column name"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "location",
+    "description": "Remove column location"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "sponsor",
+    "newColumnName": "name",
+    "description": "Rename column sponsor to name"
   }
 ]
