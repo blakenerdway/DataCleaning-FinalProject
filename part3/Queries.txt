@@ -1,0 +1,40 @@
+Dish
+
+**IC 1**
+SELECT * from Dish d
+WHERE d.name IS NULL OR d.name =’’;
+
+
+**IC 2**
+SELECT * from Dish d
+WHERE d.menus_appeared<1;
+
+
+**IC 3**
+SELECT * from Dish d
+WHERE d.menus_appeared > d.times_appeared;
+
+
+**IC 4**
+SELECT * from Dish d
+WHERE d.last_appeared < d.first_appeared;
+
+
+**IC 5**
+SELECT * from Dish d
+WHERE d.highest_price < d.lowest_price;
+
+
+Menu
+
+**IC 1**
+SELECT * from Menu m
+WHERE m.name IS NULL OR m.name='';
+
+**IC 2**
+SELECT * from Menu m
+WHERE m.name IS NULL OR m.page_count='';
+
+**IC 3**
+SELECT * from Menu m
+WHERE m.name IS NULL OR m.dish_count='';
