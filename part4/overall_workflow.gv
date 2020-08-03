@@ -1,0 +1,84 @@
+
+/* Start of top-level graph */
+digraph Workflow {
+rankdir=TB
+
+/* Title for graph */
+fontname=Helvetica; fontsize=18; labelloc=t
+label=General_Workflow
+
+/* Start of double cluster for drawing box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing atomic programs in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing atomic programs in workflow */
+"Dish.csv" [shape=record rankdir=LR label="{<f0> Dish.csv |<f1> Clean menu item file using OR toolkit}"];
+"Menu.csv" [shape=record rankdir=LR label="{<f0> Menu.csv |<f1> Clean menu item file using OR toolkit}"];
+Data_Transfer [shape=record rankdir=LR label="{<f0> Data_Transfer |<f1> Transfer data to local repository for next step}"];
+Dish_ICs [shape=record rankdir=LR label="{<f0> Dish_ICs |<f1> Identify integrity constraints for MenuItem.csv}"];
+Menu_ICs [shape=record rankdir=LR label="{<f0> Menu_ICs |<f1> Identify integrity constraints and clean data for Menu.csv}"];
+
+/* Style for nodes representing non-parameter data channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes for non-parameter data channels in workflow */
+table5
+table6
+table0
+table1
+intermediary
+table3
+table4
+
+/* Style for nodes representing parameter channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing parameter channels in workflow */
+
+/* Edges representing connections between programs and channels */
+"Dish.csv" -> intermediary
+"OpenRefine:cleaning" -> "Dish.csv"
+table0 -> "Dish.csv"
+"Menu.csv" -> intermediary
+"OpenRefine:cleaning" -> "Menu.csv"
+table1 -> "Menu.csv"
+Data_Transfer -> table3
+Data_Transfer -> table4
+intermediary -> Data_Transfer
+Dish_ICs -> table6
+SQL_queries -> Dish_ICs
+table3 -> Dish_ICs
+Menu_ICs -> table5
+SQL_queries -> Menu_ICs
+table4 -> Menu_ICs
+
+/* End of double cluster for drawing box around nodes in workflow */
+}}
+
+/* Style for nodes representing workflow input ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow input ports */
+table0_input_port [label=""]
+table1_input_port [label=""]
+
+/* Style for nodes representing workflow output ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow output ports */
+table5_output_port [label=""]
+table6_output_port [label=""]
+
+/* Edges from input ports to channels */
+table0_input_port -> table0
+table1_input_port -> table1
+
+/* Edges from channels to output ports */
+table5 -> table5_output_port
+table6 -> table6_output_port
+
+/* End of top-level graph */
+}
